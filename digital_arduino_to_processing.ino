@@ -36,17 +36,18 @@ void loop()
   
   // ask the first button whether it is true or false. if pressed send a 0
   boolean value = handle_button();
-  
+
+  //using serial.write instead of serial.print cause I want to send bytes.
   if (value)
   {  
-    Serial.println(0);
+    Serial.write(0);
   }
   
   // ask the second button whether it is true or false. if pressed send a 1
   boolean value1 = handle_button1();
   if (value1)
   { 
-    Serial.println(1);
+    Serial.write(1);
   }
   
   delay(10);

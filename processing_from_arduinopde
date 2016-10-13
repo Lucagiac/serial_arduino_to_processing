@@ -1,3 +1,12 @@
+// LICENCE
+// Luca Giacolini
+// www.lucagiacolini.com
+// University College of London, Interactive Architecture Lab
+// Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+// INTRODUCTION
+// this sketch takes values from Arduino and maps them to a simple game. you have to push the static ball with the moving ball from the red to the green area.
+
 //importing the library of processing, necessary in the sketch
 import processing.serial.*;
 Serial myPort;

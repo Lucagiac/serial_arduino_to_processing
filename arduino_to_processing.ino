@@ -1,5 +1,16 @@
+// Sketch successfully tested on Arduino Uno Rev3.
+
+// LICENCE
+// Luca Giacolini
+// www.lucagiacolini.com
+// University College of London, Interactive Architecture Lab
+// Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+// INTRODUCTION
 //sending input value from A0 and A1 Arduino to Processing through serial communication
 
+// HARDWARE
+// two piezo sensors connected to A0 and A1. No resistors used in this circuit.
 
 //declaring the necessary pins and variables
 int sensor = A0;

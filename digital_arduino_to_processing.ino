@@ -13,15 +13,22 @@
 // four push buttons each individually grounded through a pull-up resistor (10kOhm)
 
 
-#define buttonPin        7
-#define buttonPin1       2
-#define buttonPin2       3
-#define buttonPin3       4
+#define buttonPin        A0
+#define buttonPin1       A1
+#define buttonPin2       A2
+#define buttonPin3       A3
  
 boolean previousState;
 boolean previousState1;
 boolean previousState2;
 boolean previousState3;
+
+int value = 0;
+int value1 = 0;
+int value2 = 0;
+int value3 = 0;
+
+int trigger = 0;
 
 void setup()
 {
@@ -40,6 +47,9 @@ void setup()
   previousState1 = false;
   previousState2 = false;
   previousState3 = false;
+
+  triggerSet();
+
 }
 
 void loop()
@@ -49,28 +59,28 @@ void loop()
   boolean value = handle_button();
 
   //using serial.write instead of serial.print cause I want to send bytes.
-  if (value)
+  if (!value)
   {  
     Serial.write(0);
   }
   
   // ask the second button whether it is true or false. if pressed send a 1
   boolean value1 = handle_button1();
-  if (value1)
+  if (!value1)
   { 
     Serial.write(1);
   }
 
   // ask the third button whether it is true or false. if pressed send a 2
   boolean value2 = handle_button2();
-  if (value2)
+  if (!value2)
   { 
     Serial.write(2);
   }
 
   // ask the fourth button whether it is true or false. if pressed send a 3
   boolean value3 = handle_button3();
-  if (value3)
+  if (!value3)
   { 
     Serial.write(3);
   }
@@ -82,39 +92,69 @@ void loop()
 boolean handle_button()
 {
   boolean event;
-  int currentState = !digitalRead(buttonPin); // pin low -> value
+  value = analogRead(buttonPin);
+  if (value > trigger){
+  int currentState = false; // pin low -> value
 
   event = currentState && !previousState;
   previousState = currentState;
+
   return event;
+  }
 }
 
 boolean handle_button1()
 {
   boolean event1;
-  int currentState1 = !digitalRead(buttonPin1); // pin low -> value
+  value1 = analogRead(buttonPin1);
+  if (value1 > trigger){
+  int currentState1 = false; // pin low -> value
 
   event1 = currentState1 && !previousState1;
   previousState1 = currentState1;
+
   return event1;
+  }
 }
 
 boolean handle_button2()
 {
   boolean event2;
-  int currentState2 = !digitalRead(buttonPin2); // pin low -> value
+  value2 = analogRead(buttonPin2);
+  if (value2 > trigger){
+  int currentState2 = false; // pin low -> value
 
   event2 = currentState2 && !previousState2;
   previousState2 = currentState2;
+
   return event2;
+  }
 }
 
 boolean handle_button3()
 {
   boolean event3;
-  int currentState3 = !digitalRead(buttonPin3); // pin low -> value
+  value3 = analogRead(buttonPin3);
+  if (value3 > trigger){
+  int currentState3 = false; // pin low -> value
 
   event3 = currentState3 && !previousState3;
   previousState3 = currentState3;
+
   return event3;
+  }
 }
+
+void triggerSet(){
+
+
+
+  int first = analogRead(A0);
+
+  
+
+  trigger = first - 20;
+
+  delay(5000);
+  
+  }
